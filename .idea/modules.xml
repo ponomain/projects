@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Crowdfunding/.idea/Crowdfunding.iml" filepath="$PROJECT_DIR$/Crowdfunding/.idea/Crowdfunding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaFxGame/GameIntroMaven/GameIntroMaven.iml" filepath="$PROJECT_DIR$/JavaFxGame/GameIntroMaven/GameIntroMaven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Projects.iml" filepath="$PROJECT_DIR$/.idea/Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crowdfunding/auth/auth.iml" filepath="$PROJECT_DIR$/Crowdfunding/auth/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crowdfunding/client/client.iml" filepath="$PROJECT_DIR$/Crowdfunding/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crowdfunding/tran/tran.iml" filepath="$PROJECT_DIR$/Crowdfunding/tran/tran.iml" />
+    </modules>
+  </component>
+</project>
