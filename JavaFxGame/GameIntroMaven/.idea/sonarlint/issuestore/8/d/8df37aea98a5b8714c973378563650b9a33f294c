@@ -1,0 +1,8 @@
+
+U	java:S106("9Replace this use of System.out or System.err by a logger.(ÙÂ‰Ž8£¤ê²“/
+Z	java:S1064"9Replace this use of System.out or System.err by a logger.(ÞŸÑžûÿÿÿÿ8£¤ê²“/
+Z	java:S106:"9Replace this use of System.out or System.err by a logger.(ÍøÑžþÿÿÿÿ8£¤ê²“/
+Z	java:S106="9Replace this use of System.out or System.err by a logger.( ³ìôúÿÿÿÿ8£¤ê²“/
+X	java:S125F"<This block of commented-out lines of code should be removed.(ô†ÜÜ8ûóÊä“/
+l
+java:S1128"ORemove this unused import 'ru.innopolis.stc37.ponomarev.game.dto.StatisticDto'.(˜âîÑ8ÍµÂ°Ä/
