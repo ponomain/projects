@@ -5,6 +5,11 @@
       <list>
         <option value="$PROJECT_DIR$/JavaFxGame/GameIntroMaven/pom.xml" />
         <option value="$PROJECT_DIR$/JavaFxGame/JavaFxGameClient/pom.xml" />
+        <option value="$PROJECT_DIR$/BankApp/notification/pom.xml" />
+        <option value="$PROJECT_DIR$/BankApp/cloud-server/pom.xml" />
+        <option value="$PROJECT_DIR$/BankApp/client-service/pom.xml" />
+        <option value="$PROJECT_DIR$/BankApp/client/pom.xml" />
+        <option value="$PROJECT_DIR$/BankApp/card-issuer/pom.xml" />
       </list>
     </option>
   </component>

@@ -6,13 +6,43 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="client-service-data" />
         <module name="game-intro" />
         <module name="game-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="card-issuer" target="11" />
+      <module name="card-issuer-api" target="11" />
+      <module name="card-issuer-data" target="11" />
+      <module name="card-issuer-srv" target="11" />
+      <module name="client" target="11" />
+      <module name="client-service" target="11" />
+      <module name="client-service-api" target="11" />
+      <module name="client-service-data" target="11" />
+      <module name="client-service-srv" target="11" />
+      <module name="cloud-server" target="11" />
       <module name="game-client" target="1.8" />
       <module name="game-intro" target="15" />
+      <module name="notification" target="11" />
+      <module name="notification-api" target="11" />
+      <module name="notification-data" target="11" />
+      <module name="notification-srv" target="11" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="card-issuer-api" options="-parameters" />
+      <module name="card-issuer-data" options="-parameters" />
+      <module name="card-issuer-srv" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="client" options="-parameters" />
+      <module name="client-service-api" options="-parameters" />
+      <module name="client-service-data" options="-parameters" />
+      <module name="client-service-srv" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="cloud-server" options="-parameters" />
+      <module name="notification-api" options="-parameters" />
+      <module name="notification-data" options="-parameters" />
+      <module name="notification-srv" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+    </option>
   </component>
 </project>
