@@ -1,0 +1,9 @@
+
+S
+java:S1068-"1Remove this unused "tokenProvider" private field.(æÖÍœüÿÿÿÿ8´ä­™İ/
+i
+java:S1192i"LDefine a constant instead of duplicating this literal "projectForm" 6 times.(§öÎ8Ãä­™İ/
+n
+java:S1192H"QDefine a constant instead of duplicating this literal "newCreateProject" 5 times.(Ÿğı°8Ãä­™İ/
+|
+java:S1488b"_Immediately return this expression instead of assigning it to the temporary variable "percent".(¹ˆÊÏ8Ãä­™İ/

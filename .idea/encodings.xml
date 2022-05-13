@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/BankApp/card-issuer/card-issuer-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/card-issuer/card-issuer-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/card-issuer/card-issuer-srv/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/card-issuer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/card-issuer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client-service/client-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client-service/client-service-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client-service/client-service-srv/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/cloud-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/cloud-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/notification/notification-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/notification/notification-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/notification/notification-srv/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/notification/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankApp/notification/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

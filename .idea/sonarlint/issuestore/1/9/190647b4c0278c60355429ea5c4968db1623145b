@@ -1,0 +1,13 @@
+
+E
+java:S1068"*Remove this unused "userId" private field.(Â—‹¼úÿÿÿÿ
+D
+java:S1068")Remove this unused "email" private field.(ª«Õìùÿÿÿÿ
+G
+java:S1068",Remove this unused "password" private field.(œãë­úÿÿÿÿ
+J
+java:S1068"/Remove this unused "accessToken" private field.(ù‰ôÅøÿÿÿÿ
+F
+java:S1068"0Remove this unused "refreshToken" private field.(­÷Ç
+A
+java:S1068",Remove this unused "isActive" private field.(»¸ü(

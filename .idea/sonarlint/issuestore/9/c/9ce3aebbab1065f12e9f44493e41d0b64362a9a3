@@ -1,0 +1,6 @@
+
+s	java:S116"YRename this field "JWT_SECRET_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃõËÕùÿÿÿÿ
+c
+java:S1874D"ARemove this use of "TokenAuthenticationFilter"; it is deprecated.(§ùö­şÿÿÿÿ8ØŠ¸™İ/
+c
+java:S1874D"ARemove this use of "TokenAuthenticationFilter"; it is deprecated.(§ùö­şÿÿÿÿ8ØŠ¸™İ/
