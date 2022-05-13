@@ -1,0 +1,12 @@
+
+Q
+java:S1481õ".Remove this unused "accountId" local variable.(¡ì„Àşÿÿÿÿ8ĞŞ­™İ/
+Q
+java:S1481ÿ".Remove this unused "accountId" local variable.(¡ì„Àşÿÿÿÿ8ÑŞ­™İ/
+S
+java:S1133–"5Do not forget to remove this deprecated code someday.(ÏÀªƒ8ÕŞ­™İ/
+E
+java:S1123–"'Add the missing @Deprecated annotation.(ÏÀªƒ8ÕŞ­™İ/
+]
+java:S1144–"?Remove this unused private "createDirectoryIfNotExists" method.(ÏÀªƒ8ÚŞ­™İ/
+s	java:S117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à¢şÿÿÿÿ8ÚŞ­™İ/
