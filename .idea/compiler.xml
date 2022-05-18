@@ -6,9 +6,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="card-issuer-data" />
         <module name="client-service-data" />
         <module name="game-intro" />
+        <module name="notification-api" />
+        <module name="card-issuer-api" />
+        <module name="cloud-server" />
+        <module name="card-issuer-srv" />
+        <module name="notification-data" />
         <module name="game-client" />
+        <module name="client-service-api" />
+      </profile>
+      <profile name="Annotation profile for client-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="spring" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="client-service-srv" />
+        <module name="notification-srv" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -34,7 +54,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="card-issuer-api" options="-parameters" />
       <module name="card-issuer-data" options="-parameters" />
-      <module name="card-issuer-srv" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="card-issuer-srv" options="-parameters" />
       <module name="client" options="-parameters" />
       <module name="client-service-api" options="-parameters" />
       <module name="client-service-data" options="-parameters" />
