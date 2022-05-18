@@ -1,2 +1,2 @@
-# Краудфандинговый сервис, предоставляющий платформу, для пользователей, где они могут создавать свои проекты и собирать на это деньги
-## Реализовано с помощью микросервисной архитектуры, сервисы общаются между собой через REST API. Так же прикручен Spring Security
+# A crowdfunding service that provides a platform for users to create their own projects and raise money for it
+## Implemented using a microservice architecture, services communicate with each other via the REST API. Spring Security is also added
