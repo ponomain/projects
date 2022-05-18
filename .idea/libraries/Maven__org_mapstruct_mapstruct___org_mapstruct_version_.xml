@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mapstruct:mapstruct:${org.mapstruct.version}">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/${org.mapstruct.version}/mapstruct-${org.mapstruct.version}.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/${org.mapstruct.version}/mapstruct-${org.mapstruct.version}-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/${org.mapstruct.version}/mapstruct-${org.mapstruct.version}-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

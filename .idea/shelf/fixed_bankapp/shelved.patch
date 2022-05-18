@@ -1,0 +1,958 @@
+Index: BankApp/notification/notification-srv/src/main/resources/application-local.yml
+===================================================================
+diff --git a/BankApp/notification/notification-srv/src/main/resources/application-local.yml b/BankApp/notification/notification-srv/src/main/resources/application-local.yml
+deleted file mode 100644
+--- a/BankApp/notification/notification-srv/src/main/resources/application-local.yml	(revision 76401e03fd9953338559cfb743ca3639bb5607ff)
++++ /dev/null	(revision 76401e03fd9953338559cfb743ca3639bb5607ff)
+@@ -1,5 +0,0 @@
+-spring:
+-  datasource: jdbc:postgresql://localhost:5432/card_issuer?currentSchema=notification
+-
+-kafka:
+-  bootstrapAddress: 127.0.0.1:9092
+Index: BankApp/client-service/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <packaging>pom</packaging>\r\n    <modules>\r\n        <module>client-service-api</module>\r\n        <module>client-service-data</module>\r\n        <module>client-service-srv</module>\r\n    </modules>\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>2.6.5</version>\r\n        <relativePath/> <!-- lookup parent from repository -->\r\n    </parent>\r\n    <groupId>ponomarev.nickolay</groupId>\r\n    <artifactId>client-service</artifactId>\r\n    <version>0.0.1-SNAPSHOT</version>\r\n    <name>client-service</name>\r\n    <properties>\r\n        <java.version>11</java.version>\r\n        <mapstruct.version>1.4.2.Final</mapstruct.version>\r\n        <spring-cloud.version>2021.0.1</spring-cloud.version>\r\n        <testcontainers.version>1.16.2</testcontainers.version>\r\n    </properties>\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-security</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.liquibase</groupId>\r\n            <artifactId>liquibase-core</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.postgresql</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <optional>true</optional>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.security</groupId>\r\n            <artifactId>spring-security-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.testcontainers</groupId>\r\n            <artifactId>junit-jupiter</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.testcontainers</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n    <dependencyManagement>\r\n        <dependencies>\r\n            <dependency>\r\n                <groupId>org.springframework.cloud</groupId>\r\n                <artifactId>spring-cloud-dependencies</artifactId>\r\n                <version>${spring-cloud.version}</version>\r\n                <type>pom</type>\r\n                <scope>import</scope>\r\n            </dependency>\r\n            <dependency>\r\n                <groupId>org.testcontainers</groupId>\r\n                <artifactId>testcontainers-bom</artifactId>\r\n                <version>${testcontainers.version}</version>\r\n                <type>pom</type>\r\n                <scope>import</scope>\r\n            </dependency>\r\n        </dependencies>\r\n    </dependencyManagement>\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/pom.xml b/BankApp/client-service/pom.xml
+--- a/BankApp/client-service/pom.xml	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/pom.xml	(date 1650896431605)
+@@ -15,7 +15,7 @@
+         <version>2.6.5</version>
+         <relativePath/> <!-- lookup parent from repository -->
+     </parent>
+-    <groupId>ponomarev.nickolay</groupId>
++    <groupId>nickolay.ponomarev</groupId>
+     <artifactId>client-service</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+     <name>client-service</name>
+@@ -32,10 +32,6 @@
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+-            <artifactId>spring-boot-starter-security</artifactId>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-web</artifactId>
+         </dependency>
+         <dependency>
+@@ -63,11 +59,6 @@
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-test</artifactId>
+-            <scope>test</scope>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.springframework.security</groupId>
+-            <artifactId>spring-security-test</artifactId>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/exception/handler/ControllerExceptionHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/exception/handler/ControllerExceptionHandler.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/exception/handler/ControllerExceptionHandler.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/exception/handler/ControllerExceptionHandler.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/exception/handler/ControllerExceptionHandler.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/exception/handler/ControllerExceptionHandler.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/exception/handler/ControllerExceptionHandler.java	(date 1650896149878)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.exception.handler;
++package nickolay.ponomarev.clientservice.exception.handler;
+ 
+ import org.springframework.http.HttpHeaders;
+ import org.springframework.http.HttpStatus;
+@@ -8,8 +8,6 @@
+ import org.springframework.web.context.request.WebRequest;
+ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+ 
+-import javax.sql.rowset.WebRowSet;
+-
+ /**
+  * 12.04.2022
+  * client-service
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/IdentityDocumentRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/IdentityDocumentRepository.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/IdentityDocumentRepository.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/IdentityDocumentRepository.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/IdentityDocumentRepository.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/IdentityDocumentRepository.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/IdentityDocumentRepository.java	(date 1650896150231)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.repository;
++package nickolay.ponomarev.clientservice.repository;
+ 
+-import ponomarev.nickolay.clientservice.model.IdentityDocument;
++import nickolay.ponomarev.clientservice.model.IdentityDocument;
+ 
+ /**
+  * 21.04.2022
+Index: BankApp/notification/notification-srv/src/main/java/nickolay/ponomarev/notification/config/KafkaConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package nickolay.ponomarev.notification.config;\r\n\r\nimport nickolay.ponomarev.notification.dto.NotificationDto;\r\nimport org.apache.kafka.clients.admin.AdminClientConfig;\r\nimport org.apache.kafka.clients.admin.NewTopic;\r\nimport org.apache.kafka.clients.consumer.ConsumerConfig;\r\nimport org.apache.kafka.common.serialization.StringDeserializer;\r\nimport org.springframework.beans.factory.annotation.Value;\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.kafka.annotation.EnableKafka;\r\nimport org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;\r\nimport org.springframework.kafka.core.ConsumerFactory;\r\nimport org.springframework.kafka.core.DefaultKafkaConsumerFactory;\r\nimport org.springframework.kafka.core.KafkaAdmin;\r\nimport org.springframework.kafka.support.serializer.JsonDeserializer;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\n/**\r\n * KafkaConfig.\r\n */\r\n@EnableKafka\r\n@Configuration\r\npublic class KafkaConfig {\r\n\r\n    private static final String type = \"notification_dto:\" + NotificationDto.class.getName();\r\n\r\n    @Value(value = \"${kafka.bootstrapAddress}\")\r\n    private String bootstrapAddress;\r\n\r\n    @Value(value = \"${kafka.topic.to-notification}\")\r\n    private String notificationTopic;\r\n\r\n    @Value(value = \"${kafka.group.id}\")\r\n    private String groupId;\r\n\r\n    @Bean\r\n    public KafkaAdmin kafkaAdmin() {\r\n        Map<String, Object> configs = new HashMap<>();\r\n        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);\r\n        return new KafkaAdmin(configs);\r\n    }\r\n\r\n    @Bean\r\n    public NewTopic topic1() {\r\n        return new NewTopic(notificationTopic, 1, (short) 1);\r\n    }\r\n\r\n    @Bean\r\n    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {\r\n        ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();\r\n        factory.setConsumerFactory(consumerFactory());\r\n        return factory;\r\n    }\r\n\r\n    private ConsumerFactory<String, Object> consumerFactory() {\r\n        Map<String, Object> props = new HashMap<>();\r\n        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);\r\n        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);\r\n        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);\r\n        props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);\r\n        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);\r\n        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);\r\n        deserializerProps(props);\r\n        return new DefaultKafkaConsumerFactory<>(props);\r\n    }\r\n\r\n    private void deserializerProps(Map<String, Object> props) {\r\n        props.put(JsonDeserializer.REMOVE_TYPE_INFO_HEADERS, false);\r\n        props.put(JsonDeserializer.TRUSTED_PACKAGES, \"*\");\r\n        props.put(JsonDeserializer.TYPE_MAPPINGS, type);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/notification/notification-srv/src/main/java/nickolay/ponomarev/notification/config/KafkaConfig.java b/BankApp/notification/notification-srv/src/main/java/nickolay/ponomarev/notification/config/KafkaConfig.java
+--- a/BankApp/notification/notification-srv/src/main/java/nickolay/ponomarev/notification/config/KafkaConfig.java	(revision 76401e03fd9953338559cfb743ca3639bb5607ff)
++++ b/BankApp/notification/notification-srv/src/main/java/nickolay/ponomarev/notification/config/KafkaConfig.java	(date 1650897913826)
+@@ -13,6 +13,7 @@
+ import org.springframework.kafka.core.ConsumerFactory;
+ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+ import org.springframework.kafka.core.KafkaAdmin;
++import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
+ import org.springframework.kafka.support.serializer.JsonDeserializer;
+ 
+ import java.util.HashMap;
+@@ -62,7 +63,8 @@
+         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
+         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
++        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
++        props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
+         deserializerProps(props);
+         return new DefaultKafkaConsumerFactory<>(props);
+     }
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/ClientServiceApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/ClientServiceApplication.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/ClientServiceApplication.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/ClientServiceApplication.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/ClientServiceApplication.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/ClientServiceApplication.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/ClientServiceApplication.java	(date 1650896150129)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice;
++package nickolay.ponomarev.clientservice;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+Index: BankApp/cloud-server/docker-compose.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>version: \"3.8\"\r\nservices:\r\n\r\n  cloud-server:\r\n    build: .\r\n    image: cloud-server\r\n    ports:\r\n      - \"9999:9999\"\r\n\r\n  zookeeper:\r\n    image: wurstmeister/zookeeper\r\n    ports:\r\n      - \"2181:2181\"\r\n\r\n  kafka:\r\n    image: wurstmeister/kafka\r\n    ports:\r\n      - \"9092:9092\"\r\n    environment:\r\n      - KAFKA_BROKER_ID=0\r\n      - KAFKA_LISTENERS=PLAINTEXT://:9092\r\n      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092\r\n      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181\r\n\r\n  postgres:\r\n    image: postgres\r\n    volumes:\r\n      - ./src/main/resources/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql\r\n    ports:\r\n      - \"5432:5432\"\r\n    restart: always\r\n    environment:\r\n      POSTGRES_DB: card_issuer\r\n      POSTGRES_USER: postgres\r\n      POSTGRES_PASSWORD: admin\r\n\r\n  card-issuer:\r\n    build: ../card-issuer\r\n    image: card-issuer\r\n    ports:\r\n      - \"8080:8080\"\r\n    depends_on:\r\n      - postgres\r\n      - cloud-server\r\n\r\n  notification:\r\n    build: ../notification\r\n    image: notification\r\n    ports:\r\n      - \"8082:8082\"\r\n    depends_on:\r\n      - postgres\r\n      - kafka\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/cloud-server/docker-compose.yml b/BankApp/cloud-server/docker-compose.yml
+--- a/BankApp/cloud-server/docker-compose.yml	(revision b3fd37bfda26d25c5c2b573b2f1eef32c7c6da19)
++++ b/BankApp/cloud-server/docker-compose.yml	(date 1650895793797)
+@@ -6,11 +6,15 @@
+     image: cloud-server
+     ports:
+       - "9999:9999"
++    networks:
++      - host
+ 
+   zookeeper:
+     image: wurstmeister/zookeeper
+     ports:
+       - "2181:2181"
++    networks:
++      - host
+ 
+   kafka:
+     image: wurstmeister/kafka
+@@ -19,8 +23,10 @@
+     environment:
+       - KAFKA_BROKER_ID=0
+       - KAFKA_LISTENERS=PLAINTEXT://:9092
+-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
++      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
++    networks:
++      - host
+ 
+   postgres:
+     image: postgres
+@@ -33,6 +39,8 @@
+       POSTGRES_DB: card_issuer
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: admin
++    networks:
++      - host
+ 
+   card-issuer:
+     build: ../card-issuer
+@@ -42,6 +50,9 @@
+     depends_on:
+       - postgres
+       - cloud-server
++      - kafka
++    networks:
++      - host
+ 
+   notification:
+     build: ../notification
+@@ -51,3 +62,20 @@
+     depends_on:
+       - postgres
+       - kafka
++    networks:
++      - host
++
++  client-service:
++    build: ../client-service
++    image: client-service
++    ports:
++      - "8084:8084"
++    depends_on:
++      - postgres
++      - kafka
++      - cloud-server
++    networks:
++      - host
++networks:
++  host:
++    driver: bridge
+\ No newline at end of file
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/AddressClientSource.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/AddressClientSource.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/AddressClientSource.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/AddressClientSource.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/AddressClientSource.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/AddressClientSource.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/AddressClientSource.java	(date 1650896149909)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.source;
++package nickolay.ponomarev.clientservice.source;
+ 
+ import io.swagger.v3.oas.annotations.Operation;
+ import io.swagger.v3.oas.annotations.media.ArraySchema;
+@@ -7,7 +7,7 @@
+ import io.swagger.v3.oas.annotations.responses.ApiResponse;
+ import io.swagger.v3.oas.annotations.responses.ApiResponses;
+ import io.swagger.v3.oas.annotations.tags.Tag;
+-import ponomarev.nickolay.clientservice.dto.AddressClientDto;
++import nickolay.ponomarev.clientservice.dto.AddressClientDto;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
+ 
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/IdentityDocumentDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/IdentityDocumentDto.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/IdentityDocumentDto.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/IdentityDocumentDto.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/IdentityDocumentDto.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/IdentityDocumentDto.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/IdentityDocumentDto.java	(date 1650896150147)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.dto;
++package nickolay.ponomarev.clientservice.dto;
+ 
+ import java.time.LocalDate;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/IdentityDocumentSource.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/IdentityDocumentSource.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/IdentityDocumentSource.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/IdentityDocumentSource.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/IdentityDocumentSource.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/IdentityDocumentSource.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/IdentityDocumentSource.java	(date 1650896150034)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.source;
++package nickolay.ponomarev.clientservice.source;
+ 
+ import io.swagger.v3.oas.annotations.Operation;
+ import io.swagger.v3.oas.annotations.media.ArraySchema;
+@@ -7,7 +7,7 @@
+ import io.swagger.v3.oas.annotations.responses.ApiResponse;
+ import io.swagger.v3.oas.annotations.responses.ApiResponses;
+ import io.swagger.v3.oas.annotations.tags.Tag;
+-import ponomarev.nickolay.clientservice.dto.IdentityDocumentDto;
++import nickolay.ponomarev.clientservice.dto.IdentityDocumentDto;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
+ 
+Index: BankApp/client-service/client-service-api/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <parent>\r\n        <artifactId>client-service</artifactId>\r\n        <groupId>ponomarev.nickolay</groupId>\r\n        <version>0.0.1-SNAPSHOT</version>\r\n    </parent>\r\n\r\n    <artifactId>client-service-api</artifactId>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springdoc</groupId>\r\n            <artifactId>springdoc-openapi-ui</artifactId>\r\n            <version>1.6.4</version>\r\n        </dependency>\r\n    </dependencies>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/pom.xml b/BankApp/client-service/client-service-api/pom.xml
+--- a/BankApp/client-service/client-service-api/pom.xml	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/pom.xml	(date 1650896474287)
+@@ -6,7 +6,7 @@
+ 
+     <parent>
+         <artifactId>client-service</artifactId>
+-        <groupId>ponomarev.nickolay</groupId>
++        <groupId>nickolay.ponomarev</groupId>
+         <version>0.0.1-SNAPSHOT</version>
+     </parent>
+ 
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/ClientInfoSource.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/ClientInfoSource.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/ClientInfoSource.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/ClientInfoSource.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/ClientInfoSource.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/source/ClientInfoSource.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/source/ClientInfoSource.java	(date 1650896149994)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.source;
++package nickolay.ponomarev.clientservice.source;
+ 
+ import io.swagger.v3.oas.annotations.Operation;
+ import io.swagger.v3.oas.annotations.media.ArraySchema;
+@@ -7,7 +7,7 @@
+ import io.swagger.v3.oas.annotations.responses.ApiResponse;
+ import io.swagger.v3.oas.annotations.responses.ApiResponses;
+ import io.swagger.v3.oas.annotations.tags.Tag;
+-import ponomarev.nickolay.clientservice.dto.ClientInfoDto;
++import nickolay.ponomarev.clientservice.dto.ClientInfoDto;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
+ 
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/source/NotificationProducer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/source/NotificationProducer.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/source/NotificationProducer.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/source/NotificationProducer.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/source/NotificationProducer.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/source/NotificationProducer.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/source/NotificationProducer.java	(date 1650896150413)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.notification.source;
++package nickolay.ponomarev.notification.source;
+ 
+-import ponomarev.nickolay.notification.dto.NotificationDto;
++import nickolay.ponomarev.notification.dto.NotificationDto;
+ 
+ /**
+  * 12.04.2022
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/dto/NotificationDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/dto/NotificationDto.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/dto/NotificationDto.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/dto/NotificationDto.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/dto/NotificationDto.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/notification/dto/NotificationDto.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/notification/dto/NotificationDto.java	(date 1650896149889)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.notification.dto;
++package nickolay.ponomarev.notification.dto;
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/ClientInfoDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/ClientInfoDto.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/ClientInfoDto.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/ClientInfoDto.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/ClientInfoDto.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/ClientInfoDto.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/ClientInfoDto.java	(date 1650896150397)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.dto;
++package nickolay.ponomarev.clientservice.dto;
+ 
+ import lombok.*;
+ 
+Index: BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/AddressClientDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/AddressClientDto.java b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/AddressClientDto.java
+rename from BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/AddressClientDto.java
+rename to BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/AddressClientDto.java
+--- a/BankApp/client-service/client-service-api/src/main/java/ponomarev/nickolay/clientservice/dto/AddressClientDto.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-api/src/main/java/nickolay/ponomarev/clientservice/dto/AddressClientDto.java	(date 1650896150159)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.dto;
++package nickolay.ponomarev.clientservice.dto;
+ 
+ import java.util.UUID;
+ 
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/IdentityDocumentMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/IdentityDocumentMapper.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/IdentityDocumentMapper.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/IdentityDocumentMapper.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/IdentityDocumentMapper.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/IdentityDocumentMapper.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/IdentityDocumentMapper.java	(date 1650896150010)
+@@ -1,7 +1,7 @@
+-package ponomarev.nickolay.clientservice.mapper;
++package nickolay.ponomarev.clientservice.mapper;
+ 
+-import ponomarev.nickolay.clientservice.dto.IdentityDocumentDto;
+-import ponomarev.nickolay.clientservice.model.IdentityDocument;
++import nickolay.ponomarev.clientservice.dto.IdentityDocumentDto;
++import nickolay.ponomarev.clientservice.model.IdentityDocument;
+ import org.mapstruct.Mapper;
+ import org.mapstruct.MappingTarget;
+ import org.mapstruct.ReportingPolicy;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/ClientInfoMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/ClientInfoMapper.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/ClientInfoMapper.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/ClientInfoMapper.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/ClientInfoMapper.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/ClientInfoMapper.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/ClientInfoMapper.java	(date 1650896149849)
+@@ -1,7 +1,7 @@
+-package ponomarev.nickolay.clientservice.mapper;
++package nickolay.ponomarev.clientservice.mapper;
+ 
+-import ponomarev.nickolay.clientservice.dto.ClientInfoDto;
+-import ponomarev.nickolay.clientservice.model.ClientInfo;
++import nickolay.ponomarev.clientservice.dto.ClientInfoDto;
++import nickolay.ponomarev.clientservice.model.ClientInfo;
+ import org.mapstruct.Mapper;
+ import org.mapstruct.MappingTarget;
+ import org.mapstruct.ReportingPolicy;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientServiceImpl.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientServiceImpl.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientServiceImpl.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientServiceImpl.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientServiceImpl.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientServiceImpl.java	(date 1650896150002)
+@@ -1,14 +1,14 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.AddressClientDto;
+-import ponomarev.nickolay.clientservice.model.AddressClient;
+-import ponomarev.nickolay.clientservice.model.ClientInfo;
+-import ponomarev.nickolay.clientservice.repository.AddressClientRepository;
+-import ponomarev.nickolay.clientservice.repository.ClientInfoRepository;
++import nickolay.ponomarev.clientservice.dto.AddressClientDto;
++import nickolay.ponomarev.clientservice.model.AddressClient;
++import nickolay.ponomarev.clientservice.model.ClientInfo;
++import nickolay.ponomarev.clientservice.repository.AddressClientRepository;
++import nickolay.ponomarev.clientservice.repository.ClientInfoRepository;
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+-import ponomarev.nickolay.clientservice.mapper.AddressClientMapper;
++import nickolay.ponomarev.clientservice.mapper.AddressClientMapper;
+ 
+ import javax.validation.constraints.NotNull;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientService.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientService.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientService.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientService.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/AddressClientService.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/AddressClientService.java	(date 1650896149960)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+-import ponomarev.nickolay.clientservice.dto.AddressClientDto;
++import nickolay.ponomarev.clientservice.dto.AddressClientDto;
+ 
+ import java.util.UUID;
+ 
+Index: BankApp/client-service/client-service-data/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <parent>\r\n        <artifactId>client-service</artifactId>\r\n        <groupId>ponomarev.nickolay</groupId>\r\n        <version>0.0.1-SNAPSHOT</version>\r\n    </parent>\r\n\r\n    <artifactId>client-service-data</artifactId>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/pom.xml b/BankApp/client-service/client-service-data/pom.xml
+--- a/BankApp/client-service/client-service-data/pom.xml	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/pom.xml	(date 1650896468674)
+@@ -6,7 +6,7 @@
+ 
+     <parent>
+         <artifactId>client-service</artifactId>
+-        <groupId>ponomarev.nickolay</groupId>
++        <groupId>nickolay.ponomarev</groupId>
+         <version>0.0.1-SNAPSHOT</version>
+     </parent>
+ 
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/AuditAdvice.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/AuditAdvice.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/AuditAdvice.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/AuditAdvice.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/AuditAdvice.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/AuditAdvice.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/AuditAdvice.java	(date 1650896149899)
+@@ -1,7 +1,7 @@
+-package ponomarev.nickolay.clientservice.audit;
++package nickolay.ponomarev.clientservice.audit;
+ 
+-import ponomarev.nickolay.notification.dto.NotificationDto;
+-import ponomarev.nickolay.notification.source.NotificationProducer;
++import nickolay.ponomarev.notification.dto.NotificationDto;
++import nickolay.ponomarev.notification.source.NotificationProducer;
+ import org.aspectj.lang.ProceedingJoinPoint;
+ import org.aspectj.lang.annotation.Around;
+ import org.aspectj.lang.annotation.Aspect;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/Audit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/Audit.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/Audit.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/Audit.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/Audit.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/audit/Audit.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/audit/Audit.java	(date 1650896149977)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.audit;
++package nickolay.ponomarev.clientservice.audit;
+ 
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/AddressClientMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/AddressClientMapper.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/AddressClientMapper.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/AddressClientMapper.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/AddressClientMapper.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/mapper/AddressClientMapper.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/mapper/AddressClientMapper.java	(date 1650896150115)
+@@ -1,7 +1,7 @@
+-package ponomarev.nickolay.clientservice.mapper;
++package nickolay.ponomarev.clientservice.mapper;
+ 
+-import ponomarev.nickolay.clientservice.dto.AddressClientDto;
+-import ponomarev.nickolay.clientservice.model.AddressClient;
++import nickolay.ponomarev.clientservice.dto.AddressClientDto;
++import nickolay.ponomarev.clientservice.model.AddressClient;
+ import org.mapstruct.Mapper;
+ import org.mapstruct.MappingTarget;
+ import org.mapstruct.ReportingPolicy;
+Index: BankApp/client-service/client-service-srv/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n\r\n    <parent>\r\n        <artifactId>client-service</artifactId>\r\n        <groupId>ponomarev.nickolay</groupId>\r\n        <version>0.0.1-SNAPSHOT</version>\r\n    </parent>\r\n\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <artifactId>client-service-srv</artifactId>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.mapstruct</groupId>\r\n            <artifactId>mapstruct</artifactId>\r\n            <version>${mapstruct.version}</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>ponomarev.nickolay</groupId>\r\n            <artifactId>client-service-api</artifactId>\r\n            <version>${project.version}</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>ponomarev.nickolay</groupId>\r\n            <artifactId>client-service-data</artifactId>\r\n            <version>${project.version}</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.kafka</groupId>\r\n            <artifactId>kafka-streams</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.kafka</groupId>\r\n            <artifactId>spring-kafka</artifactId>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.springframework.boot</groupId>\r\n                <artifactId>spring-boot-maven-plugin</artifactId>\r\n                <executions>\r\n                    <execution>\r\n                        <goals>\r\n                            <goal>repackage</goal>\r\n                        </goals>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.8.1</version>\r\n                <configuration>\r\n                    <source>${java.version}</source>\r\n                    <target>${java.version}</target>\r\n                    <compilerArgs>\r\n                        <arg>-Amapstruct.defaultComponentModel=spring</arg>\r\n                    </compilerArgs>\r\n                    <annotationProcessorPaths>\r\n                        <path>\r\n                            <groupId>org.projectlombok</groupId>\r\n                            <artifactId>lombok</artifactId>\r\n                            <version>${lombok.version}</version>\r\n                        </path>\r\n                        <path>\r\n                            <groupId>org.mapstruct</groupId>\r\n                            <artifactId>mapstruct-processor</artifactId>\r\n                            <version>${mapstruct.version}</version>\r\n                        </path>\r\n                    </annotationProcessorPaths>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/pom.xml b/BankApp/client-service/client-service-srv/pom.xml
+--- a/BankApp/client-service/client-service-srv/pom.xml	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/pom.xml	(date 1650896491436)
+@@ -5,7 +5,7 @@
+ 
+     <parent>
+         <artifactId>client-service</artifactId>
+-        <groupId>ponomarev.nickolay</groupId>
++        <groupId>nickolay.ponomarev</groupId>
+         <version>0.0.1-SNAPSHOT</version>
+     </parent>
+ 
+@@ -20,14 +20,14 @@
+             <version>${mapstruct.version}</version>
+         </dependency>
+         <dependency>
+-            <groupId>ponomarev.nickolay</groupId>
++            <groupId>nickolay.ponomarev</groupId>
+             <artifactId>client-service-api</artifactId>
+-            <version>${project.version}</version>
++            <version>0.0.1-SNAPSHOT</version>
+         </dependency>
+         <dependency>
+-            <groupId>ponomarev.nickolay</groupId>
++            <groupId>nickolay.ponomarev</groupId>
+             <artifactId>client-service-data</artifactId>
+-            <version>${project.version}</version>
++            <version>0.0.1-SNAPSHOT</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.kafka</groupId>
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/config/KafkaProducerConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/config/KafkaProducerConfig.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/config/KafkaProducerConfig.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/config/KafkaProducerConfig.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/config/KafkaProducerConfig.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/config/KafkaProducerConfig.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/config/KafkaProducerConfig.java	(date 1650896150087)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.config;
++package nickolay.ponomarev.clientservice.config;
+ 
+ import org.apache.kafka.clients.admin.AdminClientConfig;
+ import org.apache.kafka.clients.admin.NewTopic;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/NotificationProducerImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/NotificationProducerImpl.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/NotificationProducerImpl.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/NotificationProducerImpl.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/NotificationProducerImpl.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/NotificationProducerImpl.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/NotificationProducerImpl.java	(date 1650896149951)
+@@ -1,9 +1,9 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+ import lombok.RequiredArgsConstructor;
+ import lombok.extern.slf4j.Slf4j;
+-import ponomarev.nickolay.notification.dto.NotificationDto;
+-import ponomarev.nickolay.notification.source.NotificationProducer;
++import nickolay.ponomarev.notification.dto.NotificationDto;
++import nickolay.ponomarev.notification.source.NotificationProducer;
+ import org.springframework.kafka.core.KafkaTemplate;
+ import org.springframework.stereotype.Service;
+ 
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/ClientInfoController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/ClientInfoController.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/ClientInfoController.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/ClientInfoController.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/ClientInfoController.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/ClientInfoController.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/ClientInfoController.java	(date 1650896150273)
+@@ -1,12 +1,12 @@
+-package ponomarev.nickolay.clientservice.controller;
++package nickolay.ponomarev.clientservice.controller;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.ClientInfoDto;
+-import ponomarev.nickolay.clientservice.source.ClientInfoSource;
++import nickolay.ponomarev.clientservice.dto.ClientInfoDto;
++import nickolay.ponomarev.clientservice.source.ClientInfoSource;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
+-import ponomarev.nickolay.clientservice.audit.Audit;
+-import ponomarev.nickolay.clientservice.service.ClientInfoService;
++import nickolay.ponomarev.clientservice.audit.Audit;
++import nickolay.ponomarev.clientservice.service.ClientInfoService;
+ 
+ import java.util.List;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/AddressClientController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/AddressClientController.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/AddressClientController.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/AddressClientController.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/AddressClientController.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/AddressClientController.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/AddressClientController.java	(date 1650896150042)
+@@ -1,14 +1,14 @@
+-package ponomarev.nickolay.clientservice.controller;
++package nickolay.ponomarev.clientservice.controller;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.AddressClientDto;
+-import ponomarev.nickolay.clientservice.source.AddressClientSource;
++import nickolay.ponomarev.clientservice.dto.AddressClientDto;
++import nickolay.ponomarev.clientservice.source.AddressClientSource;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.PathVariable;
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RestController;
+-import ponomarev.nickolay.clientservice.audit.Audit;
+-import ponomarev.nickolay.clientservice.service.AddressClientService;
++import nickolay.ponomarev.clientservice.audit.Audit;
++import nickolay.ponomarev.clientservice.service.AddressClientService;
+ 
+ import java.util.UUID;
+ 
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoServiceImpl.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoServiceImpl.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoServiceImpl.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoServiceImpl.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoServiceImpl.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoServiceImpl.java	(date 1650896150251)
+@@ -1,15 +1,15 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.ClientInfoDto;
+-import ponomarev.nickolay.clientservice.model.ClientInfo;
+-import ponomarev.nickolay.clientservice.repository.ClientInfoRepository;
++import nickolay.ponomarev.clientservice.dto.ClientInfoDto;
++import nickolay.ponomarev.clientservice.model.ClientInfo;
++import nickolay.ponomarev.clientservice.repository.ClientInfoRepository;
+ import org.springframework.data.domain.Page;
+ import org.springframework.data.domain.PageRequest;
+ import org.springframework.data.domain.Sort;
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+-import ponomarev.nickolay.clientservice.mapper.ClientInfoMapper;
++import nickolay.ponomarev.clientservice.mapper.ClientInfoMapper;
+ 
+ import javax.validation.constraints.NotNull;
+ import java.util.List;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoService.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoService.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoService.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoService.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/ClientInfoService.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/ClientInfoService.java	(date 1650896149942)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+-import ponomarev.nickolay.clientservice.dto.ClientInfoDto;
++import nickolay.ponomarev.clientservice.dto.ClientInfoDto;
+ 
+ import java.util.List;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentServiceImpl.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentServiceImpl.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentServiceImpl.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentServiceImpl.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentServiceImpl.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentServiceImpl.java	(date 1650896150241)
+@@ -1,16 +1,16 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.IdentityDocumentDto;
+-import ponomarev.nickolay.clientservice.model.Deletable;
+-import ponomarev.nickolay.clientservice.model.IdentityDocument;
+-import ponomarev.nickolay.clientservice.repository.IdentityDocumentRepository;
++import nickolay.ponomarev.clientservice.dto.IdentityDocumentDto;
++import nickolay.ponomarev.clientservice.model.Deletable;
++import nickolay.ponomarev.clientservice.model.IdentityDocument;
++import nickolay.ponomarev.clientservice.repository.IdentityDocumentRepository;
+ import org.springframework.data.domain.Page;
+ import org.springframework.data.domain.PageRequest;
+ import org.springframework.data.domain.Sort;
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+-import ponomarev.nickolay.clientservice.mapper.IdentityDocumentMapper;
++import nickolay.ponomarev.clientservice.mapper.IdentityDocumentMapper;
+ 
+ import javax.validation.constraints.NotNull;
+ import java.util.List;
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentService.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentService.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentService.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentService.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/service/IdentityDocumentService.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/service/IdentityDocumentService.java	(date 1650896150429)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.service;
++package nickolay.ponomarev.clientservice.service;
+ 
+-import ponomarev.nickolay.clientservice.dto.IdentityDocumentDto;
++import nickolay.ponomarev.clientservice.dto.IdentityDocumentDto;
+ 
+ import java.util.List;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/AddressClientRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/AddressClientRepository.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/AddressClientRepository.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/AddressClientRepository.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/AddressClientRepository.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/AddressClientRepository.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/AddressClientRepository.java	(date 1650896150281)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.repository;
++package nickolay.ponomarev.clientservice.repository;
+ 
+-import ponomarev.nickolay.clientservice.model.AddressClient;
++import nickolay.ponomarev.clientservice.model.AddressClient;
+ 
+ /**
+  * 21.04.2022
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/IdentityDocument.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/IdentityDocument.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/IdentityDocument.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/IdentityDocument.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/IdentityDocument.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/IdentityDocument.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/IdentityDocument.java	(date 1650896150070)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.model;
++package nickolay.ponomarev.clientservice.model;
+ 
+ import lombok.*;
+ 
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/DeletableRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/DeletableRepository.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/DeletableRepository.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/DeletableRepository.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/DeletableRepository.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/DeletableRepository.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/DeletableRepository.java	(date 1650896149859)
+@@ -1,7 +1,7 @@
+-package ponomarev.nickolay.clientservice.repository;
++package nickolay.ponomarev.clientservice.repository;
+ 
+ import lombok.NonNull;
+-import ponomarev.nickolay.clientservice.model.Deletable;
++import nickolay.ponomarev.clientservice.model.Deletable;
+ import org.springframework.data.domain.Page;
+ import org.springframework.data.domain.Pageable;
+ import org.springframework.data.jpa.repository.JpaRepository;
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/ClientInfoRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/ClientInfoRepository.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/ClientInfoRepository.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/ClientInfoRepository.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/ClientInfoRepository.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/repository/ClientInfoRepository.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/repository/ClientInfoRepository.java	(date 1650896149918)
+@@ -1,6 +1,6 @@
+-package ponomarev.nickolay.clientservice.repository;
++package nickolay.ponomarev.clientservice.repository;
+ 
+-import ponomarev.nickolay.clientservice.model.ClientInfo;
++import nickolay.ponomarev.clientservice.model.ClientInfo;
+ 
+ /**
+  * 11.04.2022
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/AddressClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/AddressClient.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/AddressClient.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/AddressClient.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/AddressClient.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/AddressClient.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/AddressClient.java	(date 1650896149986)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.model;
++package nickolay.ponomarev.clientservice.model;
+ 
+ import lombok.*;
+ 
+Index: BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/IdentityDocumentController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/IdentityDocumentController.java b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/IdentityDocumentController.java
+rename from BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/IdentityDocumentController.java
+rename to BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/IdentityDocumentController.java
+--- a/BankApp/client-service/client-service-srv/src/main/java/ponomarev/nickolay/clientservice/controller/IdentityDocumentController.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-srv/src/main/java/nickolay/ponomarev/clientservice/controller/IdentityDocumentController.java	(date 1650896150054)
+@@ -1,15 +1,15 @@
+-package ponomarev.nickolay.clientservice.controller;
++package nickolay.ponomarev.clientservice.controller;
+ 
+ import lombok.RequiredArgsConstructor;
+-import ponomarev.nickolay.clientservice.dto.IdentityDocumentDto;
+-import ponomarev.nickolay.clientservice.source.IdentityDocumentSource;
++import nickolay.ponomarev.clientservice.dto.IdentityDocumentDto;
++import nickolay.ponomarev.clientservice.source.IdentityDocumentSource;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.PathVariable;
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.RestController;
+-import ponomarev.nickolay.clientservice.audit.Audit;
+-import ponomarev.nickolay.clientservice.service.IdentityDocumentService;
++import nickolay.ponomarev.clientservice.audit.Audit;
++import nickolay.ponomarev.clientservice.service.IdentityDocumentService;
+ 
+ import java.util.List;
+ import java.util.UUID;
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/Deletable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/Deletable.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/Deletable.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/Deletable.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/Deletable.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/Deletable.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/Deletable.java	(date 1650896149868)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.model;
++package nickolay.ponomarev.clientservice.model;
+ 
+ import lombok.Data;
+ import org.hibernate.annotations.GenericGenerator;
+Index: BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/ClientInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/ClientInfo.java b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/ClientInfo.java
+rename from BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/ClientInfo.java
+rename to BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/ClientInfo.java
+--- a/BankApp/client-service/client-service-data/src/main/java/ponomarev/nickolay/clientservice/model/ClientInfo.java	(revision 701da5fd38455dde9b91ae351c5f96401d134ac1)
++++ b/BankApp/client-service/client-service-data/src/main/java/nickolay/ponomarev/clientservice/model/ClientInfo.java	(date 1650896150383)
+@@ -1,4 +1,4 @@
+-package ponomarev.nickolay.clientservice.model;
++package nickolay.ponomarev.clientservice.model;
+ 
+ import lombok.Getter;
+ import lombok.Setter;

@@ -1,0 +1,168 @@
+Index: .idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_1_1.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_1_1.xml b/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_1_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_1_1.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: org.springframework.cloud:spring-cloud-openfeign-core:3.1.1">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-openfeign-core/3.1.1/spring-cloud-openfeign-core-3.1.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-openfeign-core/3.1.1/spring-cloud-openfeign-core-3.1.1-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-openfeign-core/3.1.1/spring-cloud-openfeign-core-3.1.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml b/.idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: io.github.openfeign.form:feign-form-spring:3.8.0">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form-spring/3.8.0/feign-form-spring-3.8.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form-spring/3.8.0/feign-form-spring-3.8.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form-spring/3.8.0/feign-form-spring-3.8.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml b/.idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: io.github.openfeign.form:feign-form:3.8.0">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form/3.8.0/feign-form-3.8.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form/3.8.0/feign-form-3.8.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/form/feign-form/3.8.0/feign-form-3.8.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_1_1.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_1_1.xml b/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_1_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_1_1.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:3.1.1">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-starter-openfeign/3.1.1/spring-cloud-starter-openfeign-3.1.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-starter-openfeign/3.1.1/spring-cloud-starter-openfeign-3.1.1-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-starter-openfeign/3.1.1/spring-cloud-starter-openfeign-3.1.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__commons_io_commons_io_2_2.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__commons_io_commons_io_2_2.xml b/.idea/libraries/Maven__commons_io_commons_io_2_2.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__commons_io_commons_io_2_2.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: commons-io:commons-io:2.2">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.2/commons-io-2.2.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.2/commons-io-2.2-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.2/commons-io-2.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml b/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: commons-fileupload:commons-fileupload:1.4">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-fileupload/commons-fileupload/1.4/commons-fileupload-1.4.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-fileupload/commons-fileupload/1.4/commons-fileupload-1.4-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/commons-fileupload/commons-fileupload/1.4/commons-fileupload-1.4-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__io_github_openfeign_feign_core_11_8.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__io_github_openfeign_feign_core_11_8.xml b/.idea/libraries/Maven__io_github_openfeign_feign_core_11_8.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__io_github_openfeign_feign_core_11_8.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: io.github.openfeign:feign-core:11.8">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-core/11.8/feign-core-11.8.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-core/11.8/feign-core-11.8-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-core/11.8/feign-core-11.8-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__io_github_openfeign_feign_slf4j_11_8.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__io_github_openfeign_feign_slf4j_11_8.xml b/.idea/libraries/Maven__io_github_openfeign_feign_slf4j_11_8.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__io_github_openfeign_feign_slf4j_11_8.xml	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
++++ /dev/null	(revision 4bcac603f95430c9ff5ccd3baed28855db86fde2)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: io.github.openfeign:feign-slf4j:11.8">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-slf4j/11.8/feign-slf4j-11.8.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-slf4j/11.8/feign-slf4j-11.8-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/io/github/openfeign/feign-slf4j/11.8/feign-slf4j-11.8-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
