@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="AutomaticModuleUnloader">
     <loaded-modules>
       <module name="Projects" />
@@ -7,18 +10,15 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d792689-10c2-4a8b-b5aa-e73f365a4919" name="Default Changelist" comment="fixed crowdfunding">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/java/ru/pcs/crowdfunding/client/interceptors/ExceptionInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/java/ru/pcs/crowdfunding/client/interceptors/ExceptionInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/bootstrap.2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/bootstrap.2.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/js/jquery-1.11.3.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/static/bootstrap/js/jquery-1.11.3.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/templates/newHomePage.ftlh" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/templates/newHomePage.ftlh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/templates/signUp.ftlh" beforeDir="false" afterPath="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/templates/signUp.ftlh" afterDir="false" />
+    <list default="true" id="1d792689-10c2-4a8b-b5aa-e73f365a4919" name="Default Changelist" comment="fixed bankapp">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_feign_core_11_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_feign_slf4j_11_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_1_1.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,23 +34,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="22V9tiPfjF0ywgq7a3BFiY63c40" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Crowdfunding/client/src/main/resources/templates" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "spring.configuration.checksum": "03d1d5f12459e2c143084e7621f3942c"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\isave\Desktop\work\Projects\Crowdfunding\client\src\main\resources\templates" />
@@ -104,6 +103,7 @@
       <workItem from="1639912105019" duration="254000" />
       <workItem from="1639912646724" duration="4251000" />
       <workItem from="1639925149574" duration="751000" />
+      <workItem from="1652858501653" duration="580000" />
     </task>
     <task id="LOCAL-00001" summary="added java fx game">
       <created>1639915343804</created>
@@ -147,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639925386057</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed bankapp">
+      <created>1652858636698</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652858636698</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,13 +170,13 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added java fx game" />
     <MESSAGE value="deleted some useless files" />
     <MESSAGE value="added crowdfunding" />
     <MESSAGE value="fixed crowdfunding" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed crowdfunding" />
+    <MESSAGE value="fixed bankapp" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bankapp" />
   </component>
 </project>
